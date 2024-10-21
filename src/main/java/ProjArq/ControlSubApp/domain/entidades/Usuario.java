@@ -8,4 +8,12 @@ public class UsuarioModel {
         this.usuario = usuario;
         this.senha = senha;
     }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
 }
