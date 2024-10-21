@@ -1,19 +1,26 @@
 package ProjArq.ControlSubApp.aplicacao.dtos;
 
+import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Aplicativo;
+import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Assinatura;
+import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Cliente;
+
 public class AplicativoDTO {
-    private long codigo;
+    private long id;
     private String nome;
     private double custoMensal;
 
-    public AplicativoDTO() {
-
+    public AplicativoDTO(long id, String nome, double custoMensal) {
+    this.id = id;
+    this.nome = nome;
+    this.custoMensal = custoMensal;
     }
-    public long getCodigo() {
-        return codigo;
+
+    public long getId() {
+        return id;
     }
 
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -32,4 +39,9 @@ public class AplicativoDTO {
     public void setCustoMensal(double preco) {
         this.custoMensal = custoMensal;
     }
+
+    public static AplicativoDTO fromModel(Aplicativo aplicativo) {
+        return new AplicativoDTO(aplicativo.getCodigo(), aplicativo.getNome(), aplicativo.getCustoMensal());
+    }
+
 }
