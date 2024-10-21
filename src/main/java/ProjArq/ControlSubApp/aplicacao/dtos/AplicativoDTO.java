@@ -5,6 +5,9 @@ public class AplicativoDTO {
     private String nome;
     private double custoMensal;
 
+    public AplicativoDTO() {
+
+    }
     public long getCodigo() {
         return codigo;
     }
