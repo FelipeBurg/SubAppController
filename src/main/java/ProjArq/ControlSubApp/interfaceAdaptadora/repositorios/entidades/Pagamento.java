@@ -1,4 +1,4 @@
-package ProjArq.ControlSubApp.domain.entidades;
+package ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades;
 
 import java.util.Date;
 

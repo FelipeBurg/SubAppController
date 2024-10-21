@@ -1,4 +1,4 @@
-package ProjArq.ControlSubApp.domain.entidades;
+package ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades;
 
 public class Cliente {
     private long codigo;

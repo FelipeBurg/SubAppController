@@ -1,15 +1,16 @@
-package ProjArq.ControlSubApp.domain.entidades;
+package ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Assinatura {
     private long codigo;
-    private Date inicioVigencia;
+    private Timestamp inicioVigencia;
     private Date fimVigencia;
     private Cliente cliente;
     private Aplicativo aplicativo;
 
-    public Assinatura(long codigo, Date inicioVigencia, Date fimVigencia, Cliente cliente, Aplicativo aplicativo) {
+    public Assinatura(long codigo, Timestamp inicioVigencia, Date fimVigencia, Cliente cliente, Aplicativo aplicativo) {
         this.codigo = codigo;
         this.inicioVigencia = inicioVigencia;
         this.fimVigencia = fimVigencia;
