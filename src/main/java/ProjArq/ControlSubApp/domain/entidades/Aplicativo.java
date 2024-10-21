@@ -11,6 +11,7 @@ public class Aplicativo {
         this.custoMensal = custoMensal;
     }
 
+
     public long getCodigo() {
         return codigo;
     }
