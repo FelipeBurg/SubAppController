@@ -1,7 +1,7 @@
 package ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories;
 
+import ProjArq.ControlSubApp.domain.entidades.Assinatura;
 import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Assinatura;
-import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Cliente;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades;
+package ProjArq.ControlSubApp.domain.entidades;
 
 public class Aplicativo {
     private long codigo;
@@ -22,5 +22,8 @@ public class Aplicativo {
 
     public double getCustoMensal() {
         return custoMensal;
+    }
+    public void setCustoMensal(double custoMensal) {
+        this.custoMensal = custoMensal;
     }
 }

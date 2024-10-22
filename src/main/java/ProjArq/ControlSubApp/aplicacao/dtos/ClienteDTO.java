@@ -1,5 +1,8 @@
 package ProjArq.ControlSubApp.aplicacao.dtos;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class ClienteDTO {
     private long codigo;
     private String nome;

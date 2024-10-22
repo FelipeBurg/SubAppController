@@ -2,10 +2,12 @@ package ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.DAO;
 
 import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories.ClienteRepository;
 import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Cliente;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+@Repository
 
 public class ClienteDao implements ClienteRepository {
     private Connection connection;

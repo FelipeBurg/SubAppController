@@ -1,13 +1,14 @@
-package ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades;
+package ProjArq.ControlSubApp.domain.entidades;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Cliente;
 
 public class Assinatura {
     private long codigo;
     private Timestamp inicioVigencia;
     private Date fimVigencia;
-    private Cliente cliente;
+    private ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Cliente cliente;
     private Aplicativo aplicativo;
 
     public Assinatura(long codigo, Timestamp inicioVigencia, Date fimVigencia, Cliente cliente, Aplicativo aplicativo) {
