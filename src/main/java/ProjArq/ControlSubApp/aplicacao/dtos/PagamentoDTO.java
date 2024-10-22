@@ -3,49 +3,37 @@ package ProjArq.ControlSubApp.aplicacao.dtos;
 import java.util.Date;
 
 public class PagamentoDTO {
-    private long codigo;
-    private double valorPago;
-    private Date dataPagamento;
-    private String promocao;
-    private Assinatura assinatura;
+    private String status;
+    private Date data;
+    private double valorEstornado;
 
-    public long getCodigo() {
-        return codigo;
+    public PagamentoDTO(String status, Date data, double valorEstornado) {
+        this.status = status;
+        this.data = data;
+        this.valorEstornado = valorEstornado;
     }
 
-    public double getValorPago() {
-        return valorPago;
+    public String getStatus() {
+        return status;
     }
 
-    public Date getDataPagamento() {
-        return dataPagamento;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public String getPromocao() {
-        return promocao;
+    public Date getData() {
+        return data;
     }
 
-    public Assinatura getAssinatura() {
-        return assinatura;
+    public void setData(Date data) {
+        this.data = data;
     }
 
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
+    public double getValorEstornado() {
+        return valorEstornado;
     }
 
-    public void setValorPago(double valorPago) {
-        this.valorPago = valorPago;
-    }
-
-    public void setDataPagamento(Date dataPagamento) {
-        this.dataPagamento = dataPagamento;
-    }
-
-    public void setPromocao(String promocao) {
-        this.promocao = promocao;
-    }
-
-    public void setAssinatura(Assinatura assinatura) {
-        this.assinatura = assinatura;
+    public void setValorEstornado(double valorEstornado) {
+        this.valorEstornado = valorEstornado;
     }
 }

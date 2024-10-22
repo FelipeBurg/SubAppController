@@ -1,11 +1,11 @@
 package ProjArq.ControlSubApp.aplicacao.dtos;
 
-public class ClienteDTO {
+public class UsuarioDTO {
     private long codigo;
     private String nome;
     private String email;
 
-    public ClienteDTO(long codigo, String nome, String email) {
+    public UsuarioDTO(long codigo, String nome, String email) {
         this.codigo = codigo;
         this.nome = nome;
         this.email = email;

@@ -1,8 +1,8 @@
 package ProjArq.ControlSubApp.aplicacao.dtos;
 
-import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Aplicativo;
-import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Assinatura;
-import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Cliente;
+import ProjArq.ControlSubApp.domain.entidades.Aplicativo;
+import ProjArq.ControlSubApp.domain.entidades.Assinatura;
+import ProjArq.ControlSubApp.domain.entidades.Cliente;
 
 import java.util.Date;
 

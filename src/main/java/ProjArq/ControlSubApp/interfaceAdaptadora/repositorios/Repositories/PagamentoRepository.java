@@ -1,7 +1,7 @@
 package ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories;
 
-import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Cliente;
-import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Pagamento;
+import ProjArq.ControlSubApp.domain.entidades.Cliente;
+import ProjArq.ControlSubApp.domain.entidades.Pagamento;
 
 import java.util.List;
 
