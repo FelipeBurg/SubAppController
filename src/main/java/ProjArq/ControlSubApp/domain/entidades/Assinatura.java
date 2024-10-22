@@ -42,11 +42,11 @@ public class Assinatura {
         return fimVigencia;
     }
 
-    public long getCliente() {
+    public long getCliente_codigo() {
         return cliente_codigo;
     }
 
-    public long getAplicativo() {
+    public long getAplicativo_codigo() {
         return aplicativo_codigo;
     }
 

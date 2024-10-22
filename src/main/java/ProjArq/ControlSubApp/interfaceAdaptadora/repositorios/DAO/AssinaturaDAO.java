@@ -20,8 +20,8 @@ public class AssinaturaDAO implements AssinaturaRepository {
             stmt.setLong(1, assinatura.getCodigo());
             stmt.setDate(2, (Date) assinatura.getInicioVigencia());
             stmt.setDate(3, new java.sql.Date(assinatura.getFimVigencia().getTime()));
-            stmt.setLong(4, assinatura.getAplicativo());
-            stmt.setLong(5, assinatura.getCliente());
+            stmt.setLong(4, assinatura.getAplicativo_codigo());
+            stmt.setLong(5, assinatura.getCliente_codigo());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

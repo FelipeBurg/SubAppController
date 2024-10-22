@@ -11,6 +11,4 @@ public interface PagamentoRepository {
     List<Pagamento> findAll();
 
     void save(Pagamento pagamento);
-
-    void deleteById(long codigo);
 }

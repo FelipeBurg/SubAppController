@@ -1,8 +1,6 @@
 package ProjArq.ControlSubApp.aplicacao.dtos;
 
-import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Aplicativo;
-import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Assinatura;
-import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Cliente;
+import ProjArq.ControlSubApp.domain.entidades.Aplicativo;
 
 public class AplicativoDTO {
     private long id;

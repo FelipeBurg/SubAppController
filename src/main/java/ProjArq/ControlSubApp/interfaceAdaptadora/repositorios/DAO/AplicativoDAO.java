@@ -7,17 +7,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
-import java.sql.*;
-import java.util.LinkedList;
 import java.util.List;
 
 @Repository
 public class AplicativoDAO implements AplicativoRepository {
     @PersistenceContext
     private EntityManager entityManager;
-
     public AplicativoDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
+
     }
 
     @Override
@@ -33,9 +31,7 @@ public class AplicativoDAO implements AplicativoRepository {
     @Override
     public List<Aplicativo> findAll(long cliente_codigo) {
         String jpql = "SELECT a FROM Assinatura a WHERE a.cliente_codigo = :clienteId";
-        return entityManager.createQuery(jpql, Aplicativo.class)
-                .setParameter("clienteId", cliente_codigo)
-                .getResultList();
+        return entityManager.createQuery(jpql, Aplicativo.class).setParameter("clienteId", cliente_codigo).getResultList();
     }
 
     @Override
@@ -45,8 +41,6 @@ public class AplicativoDAO implements AplicativoRepository {
 
     public List<Aplicativo> findByAplicativo(long aplicativoId) {
         String jpql = "SELECT a FROM Aplicativo a WHERE codigo = :aplicativoId";
-        return entityManager.createQuery(jpql, Aplicativo.class)
-                .setParameter("aplicativoId", aplicativoId)
-                .getResultList();
+        return entityManager.createQuery(jpql, Aplicativo.class).setParameter("aplicativoId", aplicativoId).getResultList();
     }
 }

@@ -17,7 +17,7 @@ public class AssinaturasPorTipoUC {
     }
 
     public List<Assinatura> listarAssinaturas(String tipo) {
-        List<Assinatura> todasAssinaturas = assinaturaRepository.findAll();
+        List<Assinatura> todasAssinaturas = assinaturaRepository.findAll(tipo);
         List<Assinatura> resultado = new ArrayList<>();
         Date dataAtual = new Date();
 

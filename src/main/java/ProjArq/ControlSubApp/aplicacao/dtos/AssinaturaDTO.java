@@ -58,9 +58,9 @@ public class AssinaturaDTO {
     }
 
     public static AssinaturaDTO fromModel(Assinatura assinatura) {
-        Cliente cliente = assinatura.getCliente();
-        Aplicativo app = assinatura.getAplicativo();
-        return new AssinaturaDTO(assinatura.getCodigo(),cliente.getCodigo(), app.getCodigo(), assinatura.getInicioVigencia(), assinatura.getFimVigencia());
+        long cliente = assinatura.getCliente_codigo();
+        long app = assinatura.getAplicativo_codigo();
+        return new AssinaturaDTO(assinatura.getCodigo(),cliente, app, assinatura.getInicioVigencia(), assinatura.getFimVigencia());
     }
     }
 

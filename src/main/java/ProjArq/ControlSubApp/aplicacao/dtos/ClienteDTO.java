@@ -1,14 +1,7 @@
 package ProjArq.ControlSubApp.aplicacao.dtos;
 
-<<<<<<< HEAD
-import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Aplicativo;
-import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Cliente;
+import ProjArq.ControlSubApp.domain.entidades.Cliente;
 
-=======
-import org.springframework.stereotype.Repository;
-
-@Repository
->>>>>>> bcda5a099dd584dbf032930657519c5ac1e94c1c
 public class ClienteDTO {
     private long codigo;
     private String nome;
@@ -16,9 +9,9 @@ public class ClienteDTO {
 
 
     public ClienteDTO(long codigo, String nome, String email) {
-    this.codigo = codigo;
-    this.nome = nome;
-    this.email = email;
+        this.codigo = codigo;
+        this.nome = nome;
+        this.email = email;
     }
 
     public long getCodigo() {

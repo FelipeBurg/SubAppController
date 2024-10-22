@@ -28,7 +28,7 @@ public class CriarRegistroPagamentoUC {
             return new PagamentoDTO("VALOR_INCORRETO", null, 0);
         }
 
-        Aplicativo aplicativo = aplicativoRepository.findById(assinatura.getAplicativo());
+        Aplicativo aplicativo = aplicativoRepository.findById(assinatura.getAplicativo_codigo());
         if (aplicativo == null) {
             return new PagamentoDTO("VALOR_INCORRETO", null, 0);
         }
