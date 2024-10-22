@@ -1,6 +1,14 @@
-package ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades;
+package ProjArq.ControlSubApp.domain.entidades;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long codigo;
     private String nome;
     private String email;
@@ -10,6 +18,7 @@ public class Cliente {
         this.nome = nome;
         this.email = email;
     }
+    public Cliente(){}
 
     public long getCodigo() {
         return codigo;

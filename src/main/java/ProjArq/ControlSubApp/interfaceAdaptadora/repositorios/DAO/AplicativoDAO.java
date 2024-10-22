@@ -1,72 +1,52 @@
 package ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.DAO;
 
+import ProjArq.ControlSubApp.domain.entidades.Assinatura;
 import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories.AplicativoRepository;
-import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades.Aplicativo;
+import ProjArq.ControlSubApp.domain.entidades.Aplicativo;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
+@Repository
 public class AplicativoDAO implements AplicativoRepository {
-    private Connection connection;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    public AplicativoDAO(Connection connection) {
-        this.connection = connection;
+    public AplicativoDAO(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     @Override
     public void save(Aplicativo aplicativo) {
-        String sql = "INSERT INTO aplicativo (nome, custoMensal) VALUES (?, ?)";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, aplicativo.getNome());
-            stmt.setDouble(2, aplicativo.getCustoMensal());
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        entityManager.persist(aplicativo);
     }
 
     @Override
     public void update(Aplicativo aplicativo) {
-        String sql = "UPDATE aplicativo SET nome = ?, custoMensal = ? WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, aplicativo.getNome());
-            stmt.setDouble(2, aplicativo.getCustoMensal());
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        entityManager.persist(aplicativo);
     }
 
     @Override
-    public List<Aplicativo> findAll() {
-        List<Aplicativo> aplicativos = new LinkedList<>();
-        String sql = "SELECT * FROM aplicativo";
-        try (Statement stmt = connection.createStatement()) {
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                Aplicativo aplicativo = new Aplicativo(rs.getLong("id"), rs.getString("nome"), rs.getDouble("custoMensal"));
-                aplicativos.add(aplicativo);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return aplicativos;
+    public List<Aplicativo> findAll(long cliente_codigo) {
+        String jpql = "SELECT a FROM Assinatura a WHERE a.cliente_codigo = :clienteId";
+        return entityManager.createQuery(jpql, Aplicativo.class)
+                .setParameter("clienteId", cliente_codigo)
+                .getResultList();
     }
 
     @Override
     public Aplicativo findById(long id) {
-        Aplicativo aplicativo = null;
-        String sql = "SELECT * FROM aplicativo WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setLong(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                aplicativo = new Aplicativo(rs.getLong("id"), rs.getString("nome"), rs.getDouble("custoMensal"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return aplicativo;
+        return entityManager.find(Aplicativo.class, id);
+    }
+
+    public List<Aplicativo> findByAplicativo(long aplicativoId) {
+        String jpql = "SELECT a FROM Aplicativo a WHERE codigo = :aplicativoId";
+        return entityManager.createQuery(jpql, Aplicativo.class)
+                .setParameter("aplicativoId", aplicativoId)
+                .getResultList();
     }
 }
