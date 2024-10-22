@@ -1,20 +1,33 @@
 package ProjArq.ControlSubApp.domain.entidades;
 
+import jakarta.persistence.*;
+
+import java.sql.Timestamp;
 import java.util.Date;
 
+@Entity
 public class Assinatura {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long codigo;
-    private Date inicioVigencia;
+    private Timestamp inicioVigencia;
     private Date fimVigencia;
-    private Cliente cliente;
-    private Aplicativo aplicativo;
+    @ManyToOne
+    @JoinColumn(name = "cliente_codigo", referencedColumnName = "codigo")
+    private long cliente_codigo;
+    @ManyToOne
+    @JoinColumn(name = "aplicativo_codigo", referencedColumnName = "codigo")
+    private long aplicativo_codigo;
 
-    public Assinatura(long codigo, Date inicioVigencia, Date fimVigencia, Cliente cliente, Aplicativo aplicativo) {
+    public Assinatura(long codigo, Timestamp inicioVigencia, Date fimVigencia, long cliente_codigo, long aplicativo_codigo) {
         this.codigo = codigo;
         this.inicioVigencia = inicioVigencia;
         this.fimVigencia = fimVigencia;
-        this.cliente = cliente;
-        this.aplicativo = aplicativo;
+        this.cliente_codigo = cliente_codigo;
+        this.aplicativo_codigo = aplicativo_codigo;
+    }
+
+    public Assinatura() {
     }
 
     public long getCodigo() {
@@ -29,11 +42,22 @@ public class Assinatura {
         return fimVigencia;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public long getCliente() {
+        return cliente_codigo;
     }
 
-    public Aplicativo getAplicativo() {
-        return aplicativo;
+    public long getAplicativo() {
+        return aplicativo_codigo;
+    }
+
+    @ManyToOne(optional = false)
+    private Aplicativo a;
+
+    public Aplicativo getA() {
+        return a;
+    }
+
+    public void setA(Aplicativo a) {
+        this.a = a;
     }
 }

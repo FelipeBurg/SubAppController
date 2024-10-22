@@ -1,6 +1,11 @@
-package ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.entidades;
+package ProjArq.ControlSubApp.domain.entidades;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Usuario {
+    @Id
     private String usuario;
     private String senha;
 
@@ -8,6 +13,11 @@ public class Usuario {
         this.usuario = usuario;
         this.senha = senha;
     }
+
+    public Usuario() {
+
+    }
+
     public String getUsuario() {
         return usuario;
     }
@@ -15,5 +25,4 @@ public class Usuario {
     public String getSenha() {
         return senha;
     }
-
 }
