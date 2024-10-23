@@ -1,5 +1,6 @@
 import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories.PagamentoRepository;
 
+@Service
 public class RegistrarPagamentoUC{
 
     public RegistrarPagamentoUC (PagamentoRepository pagamentoRepository){

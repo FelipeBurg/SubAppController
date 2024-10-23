@@ -1,7 +1,7 @@
 import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories.AssinaturaRepository;
 import ProjArq.ControlSubApp.domain.entidades.Assinatura;
 
-
+@Service
 public class AssinaturasDoClienteUC{
 
     private final AssinaturaRepository assinaturaRepository;

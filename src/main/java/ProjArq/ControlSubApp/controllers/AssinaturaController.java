@@ -1,5 +1,3 @@
-package ProjArq.ControlSubApp.controllers;
-
 import ProjArq.ControlSubApp.domain.entidades.Assinatura;
 import ProjArq.ControlSubApp.aplicacao.casosDeUso.*;
 import org.springframework.web.bind.annotation.*;
@@ -12,15 +10,15 @@ public class AssinaturaController {
 
     private final AssinaturasPorTipoUC assinaturasPorTipoUC;
     private final CriarAssinaturaUC criarAssinaturaUC;
-    private final ListarAssinaturasClienteUC listarAssinaturasClienteUC;
-    private final ListarAssinaturasAplicativoUC listarAssinaturasAplicativoUC;
+    private final AssinaturasDoClienteUC assinaturasDoClienteUC;  // Corrigido o nome do UC
+    private final AssinaturasPorAplicativoUC assinaturasPorAplicativoUC; // Corrigido o nome do UC
 
     public AssinaturaController(AssinaturasPorTipoUC assinaturasPorTipoUC, CriarAssinaturaUC criarAssinaturaUC,
-                                ListarAssinaturasClienteUC listarAssinaturasClienteUC, ListarAssinaturasAplicativoUC listarAssinaturasAplicativoUC) {
+                                AssinaturasDoClienteUC assinaturasDoClienteUC, AssinaturasPorAplicativoUC assinaturasPorAplicativoUC) {
         this.assinaturasPorTipoUC = assinaturasPorTipoUC;
         this.criarAssinaturaUC = criarAssinaturaUC;
-        this.listarAssinaturasClienteUC = listarAssinaturasClienteUC;
-        this.listarAssinaturasAplicativoUC = listarAssinaturasAplicativoUC;
+        this.assinaturasDoClienteUC = assinaturasDoClienteUC;
+        this.assinaturasPorAplicativoUC = assinaturasPorAplicativoUC;
     }
 
     @GetMapping("/{tipo}")
@@ -30,12 +28,12 @@ public class AssinaturaController {
 
     @GetMapping("/asscli/{codcli}")
     public List<Assinatura> listarAssinaturasPorCliente(@PathVariable long codcli) {
-        return listarAssinaturasClienteUC.listarAssinaturas(codcli);
+        return assinaturasDoClienteUC.execute(codcli);
     }
 
     @GetMapping("/assapp/{codapp}")
-    public List<Assinatura> listarAssinaturasPorAplicativo(@PathVariable long codapp) {
-        return listarAssinaturasAplicativoUC.listarAssinaturas(codapp);
+    public List<AssinaturaDTO> listarAssinaturasPorAplicativo(@PathVariable long codapp) {
+        return assinaturasPorAplicativoUC.listarAssinaturasPorAplicativo(codapp, "TODAS"); 
     }
 
     @PostMapping

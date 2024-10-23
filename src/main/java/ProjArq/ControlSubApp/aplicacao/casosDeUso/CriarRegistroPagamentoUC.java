@@ -11,6 +11,7 @@ import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories.Pagam
 import java.time.LocalDate;
 import java.util.Date;
 
+@Service
 public class CriarRegistroPagamentoUC {
     private final AssinaturaRepository assinaturaRepository;
     private final PagamentoRepository pagamentoRepository;

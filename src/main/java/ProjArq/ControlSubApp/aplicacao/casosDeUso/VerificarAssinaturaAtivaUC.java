@@ -6,6 +6,7 @@ import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories.Assin
 import java.time.LocalDate;
 import java.util.Date;
 
+@Service
 public class VerificarAssinaturaAtivaUC {
     private final AssinaturaRepository assinaturaRepository;
 

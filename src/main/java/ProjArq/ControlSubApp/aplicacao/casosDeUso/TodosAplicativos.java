@@ -6,6 +6,7 @@ import ProjArq.ControlSubApp.domain.entidades.Aplicativo;
 
 import java.util.List;
 
+@Service
 public class TodosAplicativos {
     private AplicativoRepository aplicativo;
 
