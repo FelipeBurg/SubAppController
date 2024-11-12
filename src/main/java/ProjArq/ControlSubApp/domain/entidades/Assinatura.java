@@ -1,7 +1,6 @@
 package ProjArq.ControlSubApp.domain.entidades;
 
 import jakarta.persistence.*;
-
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -10,54 +9,80 @@ public class Assinatura {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long codigo;
+
     private Timestamp inicioVigencia;
     private Date fimVigencia;
+
     @ManyToOne
     @JoinColumn(name = "cliente_codigo", referencedColumnName = "codigo")
-    private long cliente_codigo;
+    private Cliente cliente;
+
     @ManyToOne
     @JoinColumn(name = "aplicativo_codigo", referencedColumnName = "codigo")
-    private long aplicativo_codigo;
+    private Aplicativo aplicativo;
 
-    public Assinatura(long codigo, Timestamp inicioVigencia, Date fimVigencia, long cliente_codigo, long aplicativo_codigo) {
+    private String tipo;
+
+    // Construtor completo com Cliente e Aplicativo
+    public Assinatura(long codigo, Timestamp inicioVigencia, Date fimVigencia, Cliente cliente, Aplicativo aplicativo) {
         this.codigo = codigo;
         this.inicioVigencia = inicioVigencia;
         this.fimVigencia = fimVigencia;
-        this.cliente_codigo = cliente_codigo;
-        this.aplicativo_codigo = aplicativo_codigo;
+        this.cliente = cliente;
+        this.aplicativo = aplicativo;
     }
 
+    // Construtor vazio
     public Assinatura() {
     }
+
+    // Getters e Setters
 
     public long getCodigo() {
         return codigo;
     }
 
-    public Date getInicioVigencia() {
+    public void setCodigo(long codigo) {
+        this.codigo = codigo;
+    }
+
+    public Timestamp getInicioVigencia() {
         return inicioVigencia;
+    }
+
+    public void setInicioVigencia(Timestamp inicioVigencia) {
+        this.inicioVigencia = inicioVigencia;
     }
 
     public Date getFimVigencia() {
         return fimVigencia;
     }
 
-    public long getCliente_codigo() {
-        return cliente_codigo;
+    public void setFimVigencia(Date fimVigencia) {
+        this.fimVigencia = fimVigencia;
     }
 
-    public long getAplicativo_codigo() {
-        return aplicativo_codigo;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    @ManyToOne(optional = false)
-    private Aplicativo a;
-
-    public Aplicativo getA() {
-        return a;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public void setA(Aplicativo a) {
-        this.a = a;
+    public Aplicativo getAplicativo() {
+        return aplicativo;
+    }
+
+    public void setAplicativo(Aplicativo aplicativo) {
+        this.aplicativo = aplicativo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

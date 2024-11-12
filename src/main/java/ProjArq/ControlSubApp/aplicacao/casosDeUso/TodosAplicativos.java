@@ -1,18 +1,20 @@
 package ProjArq.ControlSubApp.aplicacao.casosDeUso;
 
 import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories.AplicativoRepository;
-import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories.ClienteRepository;
 import ProjArq.ControlSubApp.domain.entidades.Aplicativo;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TodosAplicativos {
-    private AplicativoRepository aplicativo;
+    private final AplicativoRepository aplicativoRepository;
 
-    public TodosAplicativos(AplicativoRepository aplicativoRepository){
-        this.aplicativo = aplicativoRepository;
+    public TodosAplicativos(AplicativoRepository aplicativoRepository) {
+        this.aplicativoRepository = aplicativoRepository;
     }
+
     public List<Aplicativo> listaAplicativos() {
-        return aplicativo.findAll();
+        return aplicativoRepository.findAll();
     }
 }

@@ -1,14 +1,15 @@
 package ProjArq.ControlSubApp.controllers;
 
-import ProjArq.ControlSubApp.domain.entidades.Aplicativo;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ProjArq.ControlSubApp.aplicacao.casosDeUso.AtualizarCustoMensalUC;
 import ProjArq.ControlSubApp.aplicacao.casosDeUso.TodosAplicativos;
-import org.springframework.web.bind.annotation.*;
+import ProjArq.ControlSubApp.domain.entidades.Aplicativo;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/servcad/aplicativos")
+@RequestMapping("/aplicativos")
 public class AplicativoController {
 
     private final TodosAplicativos todosAplicativos;
@@ -19,13 +20,20 @@ public class AplicativoController {
         this.atualizarCustoMensalUC = atualizarCustoMensalUC;
     }
 
+    // Endpoint para listar todos os aplicativos
     @GetMapping
-    public List<Aplicativo> listarAplicativos() {
-        return todosAplicativos.listaAplicativos();
+    public ResponseEntity<List<Aplicativo>> listarAplicativos() {
+        List<Aplicativo> aplicativos = todosAplicativos.listaAplicativos();
+        return ResponseEntity.ok(aplicativos);
     }
 
+    // Endpoint para atualizar o custo mensal de um aplicativo
     @PostMapping("/atualizacusto/{idAplicativo}")
-    public Aplicativo atualizarCusto(@PathVariable long idAplicativo, @RequestParam double custo) {
-        return atualizarCustoMensalUC.atualizarCustoMensal(idAplicativo, custo);
+    public ResponseEntity<Aplicativo> atualizarCusto(@PathVariable long idAplicativo, @RequestParam double custo) {
+        Aplicativo app = atualizarCustoMensalUC.atualizarCustoMensal(idAplicativo, custo);
+        if (app == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(app);
     }
 }

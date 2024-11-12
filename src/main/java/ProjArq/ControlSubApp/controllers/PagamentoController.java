@@ -1,11 +1,14 @@
 package ProjArq.ControlSubApp.controllers;
 
-import ProjArq.ControlSubApp.aplicacao.casosDeUso.*;
-import ProjArq.ControlSubApp.aplicacao.dtos.PagamentoDTO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import ProjArq.ControlSubApp.aplicacao.casosDeUso.CriarRegistroPagamentoUC;
+import ProjArq.ControlSubApp.aplicacao.casosDeUso.VerificarAssinaturaAtivaUC;
+import ProjArq.ControlSubApp.aplicacao.dtos.PagamentoDTO;
+
 @RestController
-@RequestMapping("/registrarpagamento")
+@RequestMapping("/pagamentos")
 public class PagamentoController {
 
     private final CriarRegistroPagamentoUC criarRegistroPagamentoUC;
@@ -16,14 +19,23 @@ public class PagamentoController {
         this.verificarAssinaturaAtivaUC = verificarAssinaturaAtivaUC;
     }
 
+    // Endpoint para registrar um pagamento
     @PostMapping
-    public PagamentoDTO registrarPagamento(@RequestParam long codAss, @RequestParam int dia, @RequestParam int mes,
-                                           @RequestParam int ano, @RequestParam double valorPago) {
-        return criarRegistroPagamentoUC.registrarPagamento(codAss, dia, mes, ano, valorPago);
+    public ResponseEntity<PagamentoDTO> registrarPagamento(
+        @RequestParam long codAss, 
+        @RequestParam int dia, 
+        @RequestParam int mes,
+        @RequestParam int ano, 
+        @RequestParam double valorPago
+    ) {
+        PagamentoDTO pagamento = criarRegistroPagamentoUC.registrarPagamento(codAss, dia, mes, ano, valorPago);
+        return ResponseEntity.ok(pagamento);
     }
 
+    // Endpoint para verificar se uma assinatura é válida
     @GetMapping("/assinvalida/{codass}")
-    public boolean verificarAssinaturaValida(@PathVariable long codass) {
-        return verificarAssinaturaAtivaUC.assinaturaAtiva(codass);
+    public ResponseEntity<Boolean> verificarAssinaturaValida(@PathVariable long codass) {
+        boolean isValida = verificarAssinaturaAtivaUC.validarAssinatura(codass);
+        return ResponseEntity.ok(isValida);
     }
 }

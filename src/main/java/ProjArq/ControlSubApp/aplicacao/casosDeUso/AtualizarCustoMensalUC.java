@@ -1,29 +1,31 @@
 package ProjArq.ControlSubApp.aplicacao.casosDeUso;
+
 import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories.AplicativoRepository;
 import ProjArq.ControlSubApp.domain.entidades.Aplicativo;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
+@Service
 public class AtualizarCustoMensalUC {
 
     private final AplicativoRepository aplicativoRepository;
 
-    // O repositório é passado via construtor
     public AtualizarCustoMensalUC(AplicativoRepository aplicativoRepository) {
         this.aplicativoRepository = aplicativoRepository;
     }
 
-    // Método para atualizar o custo mensal
-    public void atualizarCustoMensal(long codigo, double valor) {
-        // Busca todos os aplicativos
-        List<Aplicativo> aplicativos = aplicativoRepository.findAll();
+    public Aplicativo atualizarCustoMensal(long codigo, double valor) {
+        Optional<Aplicativo> aplicativoOptional = aplicativoRepository.findById(codigo);
 
-        // Procura o aplicativo pelo código e atualiza o custo
-        for (Aplicativo app : aplicativos) {
-            if (app.getCodigo() == codigo) {
-                app.setCustoMensal(valor);  // Atualiza o custo mensal no objeto Aplicativo
-                aplicativoRepository.update(app);  // Atualiza o aplicativo no banco
-            }
+        if (!aplicativoOptional.isPresent()) {
+            throw new IllegalArgumentException("Aplicativo não encontrado com o código: " + codigo);
         }
+        
+        Aplicativo aplicativo = aplicativoOptional.get();
+        aplicativo.setCustoMensal(valor);
+        aplicativoRepository.save(aplicativo);
+        
+        return aplicativo;
     }
 }

@@ -3,22 +3,22 @@ package ProjArq.ControlSubApp.aplicacao.dtos;
 import ProjArq.ControlSubApp.domain.entidades.Aplicativo;
 
 public class AplicativoDTO {
-    private long id;
+    private long codigo;
     private String nome;
     private double custoMensal;
 
-    public AplicativoDTO(long id, String nome, double custoMensal) {
-    this.id = id;
-    this.nome = nome;
-    this.custoMensal = custoMensal;
+    public AplicativoDTO(long codigo, String nome, double custoMensal) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.custoMensal = custoMensal;
     }
 
-    public long getId() {
-        return id;
+    public long getCodigo() {
+        return codigo;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setCodigo(long codigo) {
+        this.codigo = codigo;
     }
 
     public String getNome() {
@@ -29,17 +29,15 @@ public class AplicativoDTO {
         this.nome = nome;
     }
 
-
     public double getCustoMensal() {
         return custoMensal;
     }
 
-    public void setCustoMensal(double preco) {
+    public void setCustoMensal(double custoMensal) {
         this.custoMensal = custoMensal;
     }
 
     public static AplicativoDTO fromModel(Aplicativo aplicativo) {
         return new AplicativoDTO(aplicativo.getCodigo(), aplicativo.getNome(), aplicativo.getCustoMensal());
     }
-
 }

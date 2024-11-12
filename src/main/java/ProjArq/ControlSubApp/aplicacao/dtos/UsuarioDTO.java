@@ -11,8 +11,6 @@ public class UsuarioDTO {
         this.email = email;
     }
 
-    // Getters e Setters
-
     public long getCodigo() {
         return codigo;
     }
@@ -37,7 +35,3 @@ public class UsuarioDTO {
         this.email = email;
     }
 }
-
-
-
-

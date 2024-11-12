@@ -13,13 +13,17 @@ public class Cliente {
     private String nome;
     private String email;
 
+    // Construtor completo
     public Cliente(long codigo, String nome, String email) {
         this.codigo = codigo;
         this.nome = nome;
         this.email = email;
     }
-    public Cliente(){}
 
+    // Construtor vazio
+    public Cliente() {}
+
+    // Getters
     public long getCodigo() {
         return codigo;
     }
@@ -30,5 +34,14 @@ public class Cliente {
 
     public String getEmail() {
         return email;
+    }
+
+    // Setters
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
