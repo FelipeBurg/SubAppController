@@ -20,3 +20,4 @@ public interface AssinaturaRepository extends JpaRepository<Assinatura, Long> {
     // Se necessário um método para listar por tipo
     List<Assinatura> findAllByTipo(String tipo);
 }
+;
