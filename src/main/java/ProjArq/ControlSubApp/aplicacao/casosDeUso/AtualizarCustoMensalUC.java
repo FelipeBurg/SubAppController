@@ -15,22 +15,17 @@ public class AtualizarCustoMensalUC {
         this.aplicativoRepository = aplicativoRepository;
     }
 
-    // Método para atualizar o custo mensal de um aplicativo específico
     public Aplicativo atualizarCustoMensal(long codigo, double valor) {
-        // Busca o aplicativo pelo código
-        Optional<Aplicativo> aplicativoOptional = aplicativoRepository.findByCodigo(codigo);
+        Optional<Aplicativo> aplicativoOptional = aplicativoRepository.findById(codigo);
 
-        // Se o aplicativo for encontrado, atualiza o custo
-        if (aplicativoOptional.isPresent()) {
-            Aplicativo aplicativo = aplicativoOptional.get();
-            aplicativo.setCustoMensal(valor);  // Atualiza o custo mensal
-
-            aplicativoRepository.update(aplicativo);  // Salva a atualização no banco de dados
-
-            return aplicativo;  // Retorna o aplicativo atualizado
-        } else {
-            // Se não for encontrado, lança uma exceção
+        if (!aplicativoOptional.isPresent()) {
             throw new IllegalArgumentException("Aplicativo não encontrado com o código: " + codigo);
         }
+        
+        Aplicativo aplicativo = aplicativoOptional.get();
+        aplicativo.setCustoMensal(valor);
+        aplicativoRepository.save(aplicativo);
+        
+        return aplicativo;
     }
 }

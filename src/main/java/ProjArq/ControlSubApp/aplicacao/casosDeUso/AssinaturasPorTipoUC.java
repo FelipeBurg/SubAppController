@@ -2,8 +2,8 @@ package ProjArq.ControlSubApp.aplicacao.casosDeUso;
 
 import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories.AssinaturaRepository;
 import ProjArq.ControlSubApp.domain.entidades.Assinatura;
+import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +18,7 @@ public class AssinaturasPorTipoUC {
     }
 
     public List<Assinatura> listarAssinaturas(String tipo) {
-        List<Assinatura> todasAssinaturas = assinaturaRepository.findAll(tipo);
+        List<Assinatura> todasAssinaturas = assinaturaRepository.findAllByTipo(tipo);
         List<Assinatura> resultado = new ArrayList<>();
         Date dataAtual = new Date();
 
@@ -27,16 +27,15 @@ public class AssinaturasPorTipoUC {
 
             switch (tipo.toUpperCase()) {
                 case "TODAS":
-                    incluir = true; // Inclui todas as assinaturas
+                    incluir = true;
                     break;
                 case "ATIVAS":
-                    // Assinatura ativa se a data de fim de vigência é posterior à data atual
                     if (assinatura.getFimVigencia().after(dataAtual)) {
-                        incluir = true; // Inclui apenas assinaturas ativas
+                        incluir = true;
                     }
                     break;
                 case "CANCELADAS":
-                   if (assinatura.getFimVigencia().before(dataAtual)) {
+                    if (assinatura.getFimVigencia().before(dataAtual)) {
                         incluir = true;
                     }
                     break;
@@ -45,10 +44,10 @@ public class AssinaturasPorTipoUC {
             }
 
             if (incluir) {
-                resultado.add(assinatura); // Adiciona a assinatura ao resultado
+                resultado.add(assinatura);
             }
         }
 
-        return resultado; // Retorna a lista filtrada
+        return resultado;
     }
 }

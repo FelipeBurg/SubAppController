@@ -1,7 +1,6 @@
 package ProjArq.ControlSubApp.domain.entidades;
 
 import jakarta.persistence.*;
-
 import java.util.Collection;
 
 @Entity
@@ -19,9 +18,7 @@ public class Aplicativo {
     }
 
     public Aplicativo() {
-
     }
-
 
     public long getCodigo() {
         return codigo;
@@ -39,14 +36,15 @@ public class Aplicativo {
         this.custoMensal = custoMensal;
     }
 
-    @OneToMany(mappedBy = "a")
-    private Collection<Assinatura> a;
+    // Corrigir o mappedBy para referenciar a propriedade 'aplicativo' na entidade Assinatura
+    @OneToMany(mappedBy = "aplicativo")
+    private Collection<Assinatura> assinaturas;
 
-    public Collection<Assinatura> getA() {
-        return a;
+    public Collection<Assinatura> getAssinaturas() {
+        return assinaturas;
     }
 
-    public void setA(Collection<Assinatura> a) {
-        this.a = a;
+    public void setAssinaturas(Collection<Assinatura> assinaturas) {
+        this.assinaturas = assinaturas;
     }
 }

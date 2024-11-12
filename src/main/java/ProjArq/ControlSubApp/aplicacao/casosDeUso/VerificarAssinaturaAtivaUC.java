@@ -2,6 +2,7 @@ package ProjArq.ControlSubApp.aplicacao.casosDeUso;
 
 import ProjArq.ControlSubApp.domain.entidades.Assinatura;
 import ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories.AssinaturaRepository;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -15,11 +16,8 @@ public class VerificarAssinaturaAtivaUC {
     }
 
     public boolean validarAssinatura(long codAss) {
-        Assinatura assinatura = assinaturaRepository.findById(codAss);
-
-        if (assinatura == null) {
-            return false;
-        }
+        Assinatura assinatura = assinaturaRepository.findById(codAss)
+                .orElseThrow(() -> new IllegalArgumentException("Assinatura não encontrada"));
 
         Date dataTermino = assinatura.getFimVigencia();
 
@@ -28,14 +26,8 @@ public class VerificarAssinaturaAtivaUC {
         }
 
         LocalDate localDateTermino = dataTermino.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
-
         LocalDate dataAtual = LocalDate.now();
 
-        if (localDateTermino.isAfter(dataAtual)) {
-            return true;
-        } else {
-            return false;
-        }
+        return localDateTermino.isAfter(dataAtual);
     }
 }
-

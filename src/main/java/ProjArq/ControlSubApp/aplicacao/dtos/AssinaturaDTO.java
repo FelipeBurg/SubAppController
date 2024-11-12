@@ -1,10 +1,8 @@
 package ProjArq.ControlSubApp.aplicacao.dtos;
 
-import ProjArq.ControlSubApp.domain.entidades.Aplicativo;
-import ProjArq.ControlSubApp.domain.entidades.Assinatura;
-import ProjArq.ControlSubApp.domain.entidades.Cliente;
-
 import java.util.Date;
+
+import ProjArq.ControlSubApp.domain.entidades.Assinatura;
 
 public class AssinaturaDTO {
     private long id;
@@ -12,13 +10,21 @@ public class AssinaturaDTO {
     private long aplicativoId;
     private Date inicioVigencia;
     private Date fimVigencia;
+    private String status; // Novo campo
 
-    public AssinaturaDTO(long id, long clienteId, long aplicativoId, Date inicioVigencia, Date fimVigencia) {
+    public AssinaturaDTO(long id, long clienteId, long aplicativoId, Date inicioVigencia, Date fimVigencia, String status) {
         this.id = id;
         this.clienteId = clienteId;
         this.aplicativoId = aplicativoId;
         this.inicioVigencia = inicioVigencia;
         this.fimVigencia = fimVigencia;
+        this.status = status; // Status adicionado no construtor
+    }
+
+    // Getters e Setters
+
+    public AssinaturaDTO(Assinatura assinatura) {
+        //TODO Auto-generated constructor stub
     }
 
     public long getId() {
@@ -57,10 +63,34 @@ public class AssinaturaDTO {
         return fimVigencia;
     }
 
-    public static AssinaturaDTO fromModel(Assinatura assinatura) {
-        long cliente = assinatura.getCliente_codigo();
-        long app = assinatura.getAplicativo_codigo();
-        return new AssinaturaDTO(assinatura.getCodigo(),cliente, app, assinatura.getInicioVigencia(), assinatura.getFimVigencia());
-    }
+    public void setFimVigencia(Date fimVigencia) {
+        this.fimVigencia = fimVigencia;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    // Método para converter o modelo Assinatura para o DTO
+    public static AssinaturaDTO fromModel(Assinatura assinatura) {
+        long clienteId = assinatura.getCliente().getCodigo();
+        long aplicativoId = assinatura.getAplicativo().getCodigo();
+        Date dataAtual = new Date();
+
+        // Determinando o status com base na data de vigência
+        String status = assinatura.getFimVigencia().after(dataAtual) ? "ATIVA" : "CANCELADA";
+
+        return new AssinaturaDTO(
+            assinatura.getCodigo(),
+            clienteId,
+            aplicativoId,
+            assinatura.getInicioVigencia(),
+            assinatura.getFimVigencia(),
+            status  // Incluindo o status no DTO
+        );
+    }
+}

@@ -7,7 +7,6 @@ public class ClienteDTO {
     private String nome;
     private String email;
 
-
     public ClienteDTO(long codigo, String nome, String email) {
         this.codigo = codigo;
         this.nome = nome;

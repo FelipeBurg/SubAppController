@@ -1,20 +1,15 @@
 package ProjArq.ControlSubApp.controllers;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ProjArq.ControlSubApp.aplicacao.casosDeUso.AtualizarCustoMensalUC;
 import ProjArq.ControlSubApp.aplicacao.casosDeUso.TodosAplicativos;
 import ProjArq.ControlSubApp.domain.entidades.Aplicativo;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/servcad/aplicativos")
+@RequestMapping("/aplicativos")
 public class AplicativoController {
 
     private final TodosAplicativos todosAplicativos;
@@ -27,13 +22,18 @@ public class AplicativoController {
 
     // Endpoint para listar todos os aplicativos
     @GetMapping
-    public List<Aplicativo> listarAplicativos() {
-        return todosAplicativos.listaAplicativos();
+    public ResponseEntity<List<Aplicativo>> listarAplicativos() {
+        List<Aplicativo> aplicativos = todosAplicativos.listaAplicativos();
+        return ResponseEntity.ok(aplicativos);
     }
 
     // Endpoint para atualizar o custo mensal de um aplicativo
     @PostMapping("/atualizacusto/{idAplicativo}")
-    public Aplicativo atualizarCusto(@PathVariable long idAplicativo, @RequestParam double custo) {
-        return atualizarCustoMensalUC.atualizarCustoMensal(idAplicativo, custo);
+    public ResponseEntity<Aplicativo> atualizarCusto(@PathVariable long idAplicativo, @RequestParam double custo) {
+        Aplicativo app = atualizarCustoMensalUC.atualizarCustoMensal(idAplicativo, custo);
+        if (app == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(app);
     }
 }

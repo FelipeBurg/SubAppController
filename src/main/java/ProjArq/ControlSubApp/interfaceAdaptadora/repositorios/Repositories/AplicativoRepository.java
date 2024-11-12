@@ -4,13 +4,14 @@ import ProjArq.ControlSubApp.domain.entidades.Aplicativo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface AplicativoRepository{
-    Aplicativo findById(long codigo);
+public interface AplicativoRepository extends JpaRepository<Aplicativo, Long> {
+    // Usa Optional para permitir retornos nulos
+    Optional<Aplicativo> findById(Long codigo);
 
-    List<Aplicativo> findAll(long cliente_codigo);
+    // Este método retorna todos os aplicativos sem argumento
+    List<Aplicativo> findAll();
 
-    void save(Aplicativo aplicativo);
-
-    void update(Aplicativo aplicativo);
+    // Os métodos save e update são automaticamente gerenciados pelo JpaRepository
 }
