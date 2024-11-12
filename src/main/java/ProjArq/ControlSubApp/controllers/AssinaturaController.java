@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 import java.util.stream.Collectors;
 import java.time.LocalDate;
 
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 public class AssinaturaController {
 
     private final AssinaturasPorTipoUC assinaturasPorTipoUC;
+
     private final CriaAssinaturaUC criarAssinaturaUC;
     private final AssinaturasDoClienteUC assinaturasDoClienteUC;
     private final AssinaturasPorAplicativoUC assinaturasPorAplicativoUC;
@@ -34,7 +36,6 @@ public ResponseEntity<List<AssinaturaDTO>> listarAssinaturasPorTipo(@PathVariabl
         .collect(Collectors.toList());
     return ResponseEntity.ok(assinaturas);
 }
-
 
     @GetMapping("/cliente/{codcli}")
     public ResponseEntity<List<Assinatura>> listarAssinaturasPorCliente(@PathVariable long codcli) {

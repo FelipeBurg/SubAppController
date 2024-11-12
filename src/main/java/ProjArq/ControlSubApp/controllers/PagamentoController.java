@@ -1,5 +1,6 @@
 package ProjArq.ControlSubApp.controllers;
 
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ public class PagamentoController {
 
     // Endpoint para registrar um pagamento
     @PostMapping
+
     public ResponseEntity<PagamentoDTO> registrarPagamento(
         @RequestParam long codAss, 
         @RequestParam int dia, 
@@ -28,12 +30,14 @@ public class PagamentoController {
         @RequestParam int ano, 
         @RequestParam double valorPago
     ) {
+
         PagamentoDTO pagamento = criarRegistroPagamentoUC.registrarPagamento(codAss, dia, mes, ano, valorPago);
         return ResponseEntity.ok(pagamento);
     }
 
     // Endpoint para verificar se uma assinatura é válida
     @GetMapping("/assinvalida/{codass}")
+
     public ResponseEntity<Boolean> verificarAssinaturaValida(@PathVariable long codass) {
         boolean isValida = verificarAssinaturaAtivaUC.validarAssinatura(codass);
         return ResponseEntity.ok(isValida);

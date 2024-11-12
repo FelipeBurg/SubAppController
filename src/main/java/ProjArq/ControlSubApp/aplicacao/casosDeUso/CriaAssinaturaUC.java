@@ -27,6 +27,7 @@ public class CriaAssinaturaUC {
         this.aplicativoRepository = aplicativoRepository;
     }
 
+
     public Assinatura criarAssinatura(long clienteId, long aplicativoId, LocalDate dataInicio, LocalDate dataFim) {
         Cliente cliente = clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
@@ -39,10 +40,9 @@ public class CriaAssinaturaUC {
         }
 
         Assinatura novaAssinatura = new Assinatura();
-        novaAssinatura.setCliente(cliente);  // Use novaAssinatura ao invés de assinatura
-        novaAssinatura.setAplicativo(aplicativo);  // Corrigido para novaAssinatura
+        novaAssinatura.setCliente(cliente);  
+        novaAssinatura.setAplicativo(aplicativo);
 
-        // Conversão correta de LocalDate para Timestamp
         LocalDateTime inicioVigenciaDateTime = dataInicio.atStartOfDay();
         novaAssinatura.setInicioVigencia(Timestamp.valueOf(inicioVigenciaDateTime));
 
