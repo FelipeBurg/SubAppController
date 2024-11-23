@@ -1,0 +1,11 @@
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: Elfen.l1ed
+      MYSQL_DATABASE: subApp
+      MYSQL_PASSWORD: Elfen.l1ed
+    ports:
+      - "3306"
