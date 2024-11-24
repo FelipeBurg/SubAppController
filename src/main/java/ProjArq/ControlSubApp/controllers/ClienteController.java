@@ -22,4 +22,5 @@ public class ClienteController {
         List<Cliente> clientes = todosClientesUC.listaClientes();
         return ResponseEntity.ok(clientes);
     }
+
 }
