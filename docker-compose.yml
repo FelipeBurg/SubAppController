@@ -9,3 +9,17 @@ services:
       MYSQL_PASSWORD: Elfen.l1ed
     ports:
       - "3306"
+
+  rabbitmq:
+      image: rabbitmq:management
+      ports:
+        - "5672:5672"
+        - "15672:15672"
+  asscache:
+      build: .
+      ports:
+        - "8081"
+      depends_on:
+        - rabbitmq
+      environment:
+        - SPRING_PROFILES_ACTIVE=default
