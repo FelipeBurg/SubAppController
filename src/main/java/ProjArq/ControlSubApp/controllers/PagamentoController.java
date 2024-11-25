@@ -31,10 +31,4 @@ public class PagamentoController {
         PagamentoDTO pagamento = criarRegistroPagamentoUC.registrarPagamento(codAss, dia, mes, ano, valorPago);
         return ResponseEntity.ok(pagamento);
     }
-<<<<<<< HEAD
-=======
-
-    // Endpoint para verificar se uma assinatura é válida
-
->>>>>>> b1942da9bafb29c9234ba3c2af04ad7ac6973b1b
 }
