@@ -28,23 +28,6 @@ public class AplicativoController {
         return ResponseEntity.ok(aplicativos);
     }
 
-    /*@GetMapping
-    public ResponseEntity<List<Aplicativo>> listarAplicativos() {
-        List<Aplicativo> aplicativos;
-
-        // Consultar o AssCache primeiro
-        aplicativos = assCacheService.getaplicativosFromCache();
-
-        // Se não encontrar no cache, consulta o SCAA e atualiza o AssCache
-        if (aplicativos == null || aplicativos.isEmpty()) {
-            aplicativos = todosAplicativos.listaAplicativos();  // Consulta no SCAA
-
-            // Atualiza o AssCache com os dados recebidos do SCAA
-            assCacheService.updateCacheWithAplicativos(aplicativos);
-        }
-
-        return ResponseEntity.ok(aplicativos);
-    }*/
 
     // Endpoint para atualizar o custo mensal de um aplicativo
     @PostMapping("/atualizacusto/{idAplicativo}")

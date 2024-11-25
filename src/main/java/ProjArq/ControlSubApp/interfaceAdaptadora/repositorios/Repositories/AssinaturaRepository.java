@@ -2,10 +2,12 @@ package ProjArq.ControlSubApp.interfaceAdaptadora.repositorios.Repositories;
 
 import ProjArq.ControlSubApp.domain.entidades.Assinatura;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface AssinaturaRepository extends JpaRepository<Assinatura, Long> {
     List<Assinatura> findByClienteCodigo(long clienteCodigo);
     // Usa Optional para permitir retornos nulos
