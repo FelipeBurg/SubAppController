@@ -10,7 +10,7 @@ import ProjArq.ControlSubApp.domain.entidades.Aplicativo;
 import java.util.List;
 
 @RestController
-@RequestMapping("/aplicativos")
+@RequestMapping("/login/aplicativos")
 public class AplicativoController {
 
     private final TodosAplicativos todosAplicativos;
@@ -30,8 +30,8 @@ public class AplicativoController {
 
 
     // Endpoint para atualizar o custo mensal de um aplicativo
-    @PostMapping("/atualizacusto/{idAplicativo}")
-    public ResponseEntity<Aplicativo> atualizarCusto(@PathVariable long idAplicativo, @RequestParam double custo) {
+    @PostMapping
+    public ResponseEntity<Aplicativo> CriarAplicativo(@PathVariable long idAplicativo, @RequestParam double custo) {
         Aplicativo app = atualizarCustoMensalUC.atualizarCustoMensal(idAplicativo, custo);
         if (app == null) {
             return ResponseEntity.notFound().build();

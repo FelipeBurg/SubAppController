@@ -8,7 +8,7 @@ import ProjArq.ControlSubApp.aplicacao.casosDeUso.VerificarAssinaturaAtivaUC;
 import ProjArq.ControlSubApp.aplicacao.dtos.PagamentoDTO;
 
 @RestController
-@RequestMapping("/pagamentos")
+@RequestMapping("/login/pagamentos")
 public class PagamentoController {
 
     private final CriarRegistroPagamentoUC criarRegistroPagamentoUC;

@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/cache")
+@RequestMapping("/login/cache")
 public class CacheController {
 
     @Autowired

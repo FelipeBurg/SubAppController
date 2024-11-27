@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/login/clientes")
 public class ClienteController {
 
     private final TodosClientesUC todosClientesUC;
@@ -22,5 +22,4 @@ public class ClienteController {
         List<Cliente> clientes = todosClientesUC.listaClientes();
         return ResponseEntity.ok(clientes);
     }
-
 }
